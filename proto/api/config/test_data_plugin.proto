@@ -1,0 +1,40 @@
+// Copyright 2015 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Reconstructed from com.google.testing.platform:core-proto:0.0.9-alpha04.
+
+syntax = "proto3";
+
+package google.testing.platform.proto.api.config;
+
+import "proto/api/core/path.proto";
+import "proto/api/core/regex_pattern.proto";
+import "proto/api/core/test_artifact.proto";
+
+option java_package = "com.google.testing.platform.proto.api.config";
+option java_outer_classname = "TestDataPluginProto";
+
+message TestDataPlugin {
+  repeated google.testing.platform.proto.api.core.Artifact additional_test_data = 1;
+  repeated google.testing.platform.proto.api.core.RegexPattern required_path_matcher = 2;
+  bool pull_tombstones = 3;
+  bool pull_from_test_storage = 4;
+  repeated google.testing.platform.proto.api.core.Path paths_to_skip = 5;
+}
+
+message AllArtifactsAvailable {
+}
+
+message TestArtifactsAvailable {
+}

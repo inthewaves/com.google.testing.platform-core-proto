@@ -1,0 +1,51 @@
+// Copyright 2015 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Reconstructed from com.google.testing.platform:core-proto:0.0.9-alpha04.
+
+syntax = "proto3";
+
+package google.testing.platform.proto.api.config;
+
+import "java/com/google/testing/platform/core/telemetry/proto/diagnostics.proto";
+import "proto/api/config/cancellation_config.proto";
+import "proto/api/config/device.proto";
+import "proto/api/config/error_config.proto";
+import "proto/api/config/executor.proto";
+import "proto/api/config/fixture.proto";
+import "proto/api/config/platform_features.proto";
+import "proto/api/core/extension.proto";
+
+option java_package = "com.google.testing.platform.proto.api.config";
+option java_outer_classname = "RunnerConfigProto";
+
+message RunnerConfig {
+  repeated Device device = 1;
+  repeated TestFixture test_fixture = 2;
+  repeated google.testing.platform.proto.api.core.Extension test_result_listener = 3;
+  google.testing.platform.core.telemetry.proto.Diagnostics diagnostics = 7;
+  PlatformFeatures features = 8;
+  Services services = 10;
+  ErrorConfig error_config = 9;
+  CancellationConfig cancellation_config = 11;
+  oneof executor {
+    SingleDeviceExecutor single_device_executor = 4;
+    MultiDeviceExecutor multi_device_executor = 5;
+    ParallelDeviceExecutor parallel_device_executor = 6;
+  }
+}
+
+message Services {
+  google.testing.platform.proto.api.core.Extension port_picker = 1;
+}
